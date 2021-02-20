@@ -24,13 +24,23 @@ module.exports = function (config) {
     jasmineHtmlReporter: {
       suppressAll: true // removes the duplicated traces
     },
-    coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/angular-visualization'),
-      subdir: '.',
-      reporters: [
-        { type: 'html' },
-        { type: 'text-summary' }
-      ]
+    // coverageReporter: {
+    //   dir: require('path').join(__dirname, './coverage/angular-visualization'),
+    //   subdir: '.',
+    //   reporters: [
+    //     { type: 'html' },
+    //     { type: 'text-summary' }
+    //   ]
+    // },
+    coverageIstanbulReporter: {
+      reports: [ 'html', 'lcovonly' ],
+      fixWebpackSourcePaths: true,
+      thresholds: {
+        statements: 80,
+        lines: 80,
+        branches: 80,
+        functions: 80
+      }
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,

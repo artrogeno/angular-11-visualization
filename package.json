@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port=9000",
     "build": "ng build",
     "test": "ng test",
+    "coverage": "ng test --no-watch --code-coverage",
+    "coverage:watch": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
