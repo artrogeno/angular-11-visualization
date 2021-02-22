@@ -1,0 +1,20 @@
+
+.page-auth {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex: 1;
+
+  .box {
+    height: 100vh;
+    &-left {
+      flex-grow: 2;
+      background-color: var(--color-info);
+    }
+    &-right {
+      flex-grow: 1;
+    }
+  }
+}
