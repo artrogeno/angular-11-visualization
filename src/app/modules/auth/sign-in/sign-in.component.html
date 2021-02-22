@@ -1,0 +1,29 @@
+<section>
+
+  <section class="form">
+    <form [formGroup]="formSignIn" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="email">Email</label>
+        <input type="email" formControlName="email" id="email" placeholder="Your email"/>
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" id="password" placeholder="********"/>
+      </div>
+
+      <div>
+        <button type="submit">Sign in</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="footer">
+    <div>
+      Don't have an account?
+      <a routerLink="/auth/sign-up">Register</a>
+    </div>
+    <div>
+      <a routerLink="/">Termes & Conditions</a>
+    </div>
+  </section>
+</section>
