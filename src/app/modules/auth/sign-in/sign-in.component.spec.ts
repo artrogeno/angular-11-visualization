@@ -30,7 +30,31 @@ describe('SignInComponent', () => {
   });
 
   it('should return form invalid when form is empty', () => {
-    console.log(component.formSignIn.valid)
     expect(component.formSignIn.valid).toBeFalsy();
+  })
+
+  it('should validate email input as required', () => {
+    const email = component.formSignIn.controls.email;
+
+    expect(email.valid).toBeFalsy();
+    expect(email.errors.required).toBeTruthy()
+  })
+
+  it('should validate password input as required', () => {
+    const password = component.formSignIn.controls.password;
+
+    expect(password.valid).toBeFalsy();
+    expect(password.errors.required).toBeTruthy();
+  })
+
+  it('should validate email format', () => {
+    const email = component.formSignIn.controls.email;
+    email.setValue('test@mail.com');
+    const errors = email.errors || {}
+
+    expect(email.valid).toBeTruthy()
+    expect(errors.required).toBeFalsy()
+    expect(errors.pattern).toBeFalsy()
+
   })
 });
