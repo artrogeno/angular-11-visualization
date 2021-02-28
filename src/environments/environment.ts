@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseUrl: 'http://localhost:3001',
+  lsToken: 'LS-TOKEN',
+  layout: {
+    sidebar: true,
+    loading: false
+  },
 };
 
 /*
