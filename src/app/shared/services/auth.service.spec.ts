@@ -8,7 +8,7 @@ import { AuthService } from './auth.service'
 import { environment } from '@environments/environment'
 import { Router } from '@angular/router'
 
-fdescribe('AuthService', () => {
+describe('AuthService', () => {
   let service: AuthService
   let httpMock: HttpTestingController
   let router = {
