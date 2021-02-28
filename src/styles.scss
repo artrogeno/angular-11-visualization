@@ -46,7 +46,7 @@ blockquote, q {
   }
 }
 
-a, input, li, ol, p, ul {
+a, li, ol, p, ul {
   font-size: 12px;
   font-size: 1rem;
   line-height: 24px;
@@ -121,8 +121,9 @@ a {
   --color-cyan: #0dcaf0;
   --color-white: #fff;
   --color-gray: #6c757d;
+  --color-gray-light: #A6B0C9;
   --color-gray-dark: #343a40;
-  --color-primary: #0d6efd;
+  --color-primary: #3f51b5;
   --color-secondary: #6c757d;
   --color-success: #198754;
   --color-info: #0cb5d7e5;
@@ -131,4 +132,9 @@ a {
   --color-light: #f8f9fa;
   --color-dark: #212529;
 }
+
+@import 'assets/scss/components';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
