@@ -12,6 +12,7 @@ import { MatMenuModule } from '@angular/material/menu'
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
   declarations: [],
@@ -27,7 +28,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
     MatMenuModule,
     MatAutocompleteModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTreeModule
   ],
   exports: [
     MatToolbarModule,
@@ -41,7 +43,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
     MatMenuModule,
     MatAutocompleteModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTreeModule
   ]
 })
 export class MaterialModule { }
