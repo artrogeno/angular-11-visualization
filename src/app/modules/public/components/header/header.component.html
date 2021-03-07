@@ -1,8 +1,6 @@
-<header>
-  <section class="logo">
-    <img src="assets/images/angular.svg" id="logo" alt="logo" />
-  </section>
-  <section data-test="menu">
+<mat-toolbar>
+  <section class="menu">
+    <img src="assets/images/angular.svg" alt="logo" />
     <nav>
       <li>
         <a routerLink="/" routerLinkActive="active">Home</a>
@@ -19,8 +17,10 @@
     </nav>
     <nav>
       <li>
-        <a routerLink="/auth/sign-in">Login</a>
+        <a routerLink="/auth/sign-in">
+          <mat-icon aria-hidden="false" aria-label="Sign In">login</mat-icon>
+        </a>
       </li>
     </nav>
   </section>
-</header>
+</mat-toolbar>
