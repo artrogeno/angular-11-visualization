@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { MaterialModule } from '@shared/module/material/material.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { SignInComponent } from './sign-in/sign-in.component';
@@ -14,7 +15,8 @@ import { AuthHeaderComponent } from './components/auth-header/auth-header.compon
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    MaterialModule,
   ]
 })
 export class AuthModule { }
