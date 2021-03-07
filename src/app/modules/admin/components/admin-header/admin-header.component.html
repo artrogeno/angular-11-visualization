@@ -1,0 +1,14 @@
+<mat-toolbar class="header">
+  <button mat-icon-button class="btn-toggle" aria-label="Toggle sidebar" (click)="toggleSidebar()">
+   <mat-icon class="icon-toggle">{{ sidebar ? 'chevron_left' : 'menu' }}</mat-icon>
+  </button>
+
+  <section class="actions">
+    <button mat-icon-button aria-label="Brand button">
+      <mat-icon class="icon-brand" aria-label="brand" [class.active]="!sidebar">invert_colors</mat-icon>
+    </button>
+  </section>
+  <section class="search">
+    <app-admin-search></app-admin-search>
+  </section>
+</mat-toolbar>

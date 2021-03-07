@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  flex: row;
+  align-items: center;
+
+  .btn-toggle {
+    margin-right: 0.5rem;
+    .icon-toggle {
+      color: var(--color-gray-light);
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .icon-brand {
+      transform: scale(0);
+      opacity: 0;
+      width: 0;
+      color: var(--color-primary);
+      transition: all 0.6s ease-in-out;
+      &.active {
+        transform: scale(1);
+        opacity: 1;
+        width: auto;
+      }
+    }
+  }
+
+}
+

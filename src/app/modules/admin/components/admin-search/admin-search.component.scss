@@ -1,0 +1,24 @@
+.search-form {
+  width: 25rem;
+  .search-full-width {
+    margin-top: 0.2rem;
+    width: 100%;
+    font-size: 1rem;
+    color: var(--color-secondary);
+    border-color: var(--color-secondary);
+
+    ::ng-deep {
+      .mat-form-field-prefix {
+        top: 0.4rem;
+      }
+    }
+    .icon {
+      font-size: 1.4rem;
+      margin-right: 1rem;
+    }
+  }
+
+  .mat-focused .placeholder {
+    color: transparent;
+  }
+}

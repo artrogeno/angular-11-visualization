@@ -1,0 +1,69 @@
+<section class="sidebar">
+  <section class="top">
+    <button mat-icon-button color="primary" aria-label="brand" class="brand">
+      <mat-icon class="logo" aria-hidden="false" aria-label="brand">invert_colors</mat-icon>
+    </button>
+
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="nav-tree">
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+        <li class="mat-tree-node">
+          <a class="tree-link" *ngIf="node.type == 'nav'" [routerLink]="node.link" routerLinkActive="active">
+            <mat-icon class="icon" [class.active]="isActive(node.link)">{{ node.icon }}</mat-icon>
+            {{node.name}}
+          </a>
+          <div *ngIf="node.type == 'header'" class="tree-subheader">{{ node.name }}</div>
+        </li>
+      </mat-tree-node>
+      <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+        <li class="tree-list">
+          <button
+            mat-icon-button
+            class="tree-button"
+            matTreeNodeToggle
+            [attr.aria-label]="'Toggle ' + node.name"
+            [class.active]="treeControl.isExpanded(node)">
+            <div class="tree-button-container">
+              <span class="tree-info">
+                <mat-icon class="icon">{{ node.icon }}</mat-icon>
+                {{node.name}}
+              </span>
+              <mat-icon matSuffix>
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </div>
+
+          </button>
+          <ul [class.nav-tree-invisible]="!treeControl.isExpanded(node)">
+            <ng-container matTreeNodeOutlet></ng-container>
+          </ul>
+        </li>
+      </mat-nested-tree-node>
+    </mat-tree>
+  </section>
+
+
+
+  <section class="bottom">
+    <mat-list >
+      <div mat-subheader>Settings</div>
+      <button class="settings" mat-list-item [matMenuTriggerFor]="aboveMenu">
+        <mat-icon mat-list-icon class="">tune</mat-icon>
+        <span mat-line>Options</span>
+      </button>
+    </mat-list>
+    <mat-menu #aboveMenu="matMenu" yPosition="above" xPosition="after">
+      <button mat-menu-item class="actions">
+        <mat-icon mat-list-icon color="primary">manage_accounts</mat-icon>
+        <span mat-line>Profile</span>
+      </button>
+      <button mat-menu-item class="actions">
+        <mat-icon mat-list-icon color="primary">lock</mat-icon>
+        <span mat-line>Lock page</span>
+      </button>
+      <button mat-menu-item class="actions" (click)="logout()">
+        <mat-icon mat-list-icon color="primary">logout</mat-icon>
+        <span mat-line>Logout</span>
+      </button>
+    </mat-menu>
+  </section>
+</section>

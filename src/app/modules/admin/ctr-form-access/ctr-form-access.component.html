@@ -1,0 +1,18 @@
+<section class="page">
+  <mat-card>
+    <form [formGroup]="form" class="form">
+      <mat-form-field class="form-field">
+        <input
+          matInput
+          formControlName="name"
+          name="no-name"
+          placeholder="Add item"
+        />
+      </mat-form-field>
+      <button style="margin-top: 1rem;" mat-stroked-button (click)="onSubmit()">
+        Add item
+      </button>
+    </form>
+    <app-lock-input></app-lock-input>
+  </mat-card>
+</section>

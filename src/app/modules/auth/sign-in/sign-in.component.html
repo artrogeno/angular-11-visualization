@@ -1,20 +1,32 @@
-<section>
-
+<section class="sign-in">
   <section class="form">
+    <div class="description">
+      <div>
+        <mat-icon class="icon" matSuffix>invert_colors</mat-icon>
+      </div>
+      <h4>Hello there!</h4>
+      <h2>Welcome Back</h2>
+    </div>
     <form [formGroup]="formSignIn" (ngSubmit)="onSubmit()">
-      <div>
-        <label for="email">Email</label>
-        <input type="email" formControlName="email" id="email" placeholder="Your email"/>
-        {{ formSignIn.controls.email.valid }}
-      </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" id="password" placeholder="********"/>
-      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="Your e-mail"/>
+        <mat-icon class="icon" matSuffix>alternate_email</mat-icon>
+        <mat-error *ngIf="isError('email')">{{getErrorMessage('email')}}</mat-error>
+      </mat-form-field>
 
-      <div>
-        <button type="submit">Sign in</button>
-      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+        <button mat-icon-button mat-flat-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon class="icon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="isError('password')">{{getErrorMessage('password')}}</mat-error>
+      </mat-form-field>
+      <section class="content-action">
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+        <button mat-flat-button class="btn-submit" type="submit" *ngIf="!loading" [disabled]="formSignIn.invalid">Sign in</button>
+      </section>
     </form>
   </section>
 
@@ -28,3 +40,4 @@
     </div>
   </section>
 </section>
+
