@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MASK } from '@shared/constants';
 
 import { EmailI, EmailTypeI, PhoneI, PhoneTypeI } from '@shared/interfaces';
 import { EmailTypeService, PhoneTypeService } from '@shared/services';
 import { combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { debounceTime, map } from 'rxjs/operators';
 
 @Component({
   selector: 'contact-information',
@@ -19,7 +20,7 @@ export class ContactInformationComponent implements OnInit {
   emailTypes: EmailTypeI[]
   phoneDefault: string[] = ['Business', 'Mobile']
   emailDefault: string[] = ['Business']
-
+  phoneMask: string = MASK.PHONE
   loading = true
 
   constructor(
@@ -33,6 +34,7 @@ export class ContactInformationComponent implements OnInit {
       this.emailTypeService.get(),
       this.phoneTypeService.get(),
     ).pipe(
+      debounceTime(500),
       map(([emailTypes, phoneTypes]: any) => {
         this.emailTypes = emailTypes
         this.phoneTypes = phoneTypes
@@ -76,71 +78,53 @@ export class ContactInformationComponent implements OnInit {
     this.formatEmailForm();
   }
 
-  private formatPhoneForm(): void {
-    let phones = <PhoneI[]> this.phoneNumberForm.value
-    if (!this.formGroup.controls.phoneNumbers) {
-      this.formGroup.addControl('phoneNumbers', this.fb.array([]))
-    } else {
-      this.formGroup.controls.phoneNumbers = this.fb.array([])
-    }
-    this.formGroup.controls.phoneNumbers.updateValueAndValidity()
-
-    if (phones && phones.length > 0) {
-      let types = []
-      const phoneList = phones.filter(item => {
-        if (this.phoneDefault.includes(item.type)) {
-          types.push(item.type)
-          this.phoneNumberForm.push(this.phoneWithData(item))
-          return false
+  private formatPhoneForm(phones?: PhoneI[]): void {
+    if (this.formGroup && this.formGroup.controls) {
+      if (this.phoneNumberForm) {
+        !phones && this.phoneNumberForm.value && (phones = this.phoneNumberForm.value)
+        while (this.phoneNumberForm.length !== 0) {
+          this.phoneNumberForm.removeAt(0)
         }
-        return true
-      })
-      if (types.length === 0|| types.length <= this.phoneDefault.length) {
-        this.phoneDefault.forEach(item => (
-          !types.includes(item) && this.phoneNumberForm.push(this.phoneGroup({ type: item }))
-        ))
       }
-      phoneList.forEach(item => this.phoneNumberForm.push(this.phoneWithData(item)))
-    } else {
-      this.phoneTypes.forEach(item => {
-        if (this.phoneDefault.includes(item.type)) {
-          this.phoneNumberForm.push(this.phoneGroup(item))
+      let phoneList = phones || []
+      for (let index = 0; index < this.phoneDefault.length; index++) {
+        const { type } = this.phoneTypes.find(item => item.type === this.phoneDefault[index])
+        let data: PhoneI
+        if (phones && phones.length) {
+          data = phones.find(item => item.type && item.type == type)
+          data && (phoneList = phoneList.filter(item => item !== data))
         }
-      })
+        !data && (data = <PhoneI> { number: null, active: false, type })
+        this.phoneNumberForm.push(this.phoneWithData(data))
+      }
+      phoneList.length > 0 && phoneList.forEach(item => this.phoneNumberForm.push(this.phoneWithData(item)))
+      this.formGroup.controls.phoneNumbers = this.phoneNumberForm
     }
-    this.formGroup.controls.firstName.disabled && this.phoneNumberForm.disable()
-    this.formGroup.controls.phoneNumbers = this.phoneNumberForm
   }
 
-  private formatEmailForm(): void {
-    const emails = <EmailI[]> this.emailAddressForm.value
-    if (!this.formGroup.controls.emailAddresses) {
-      this.formGroup.addControl('emailAddresses', this.fb.array([]))
-    } else {
-      this.formGroup.controls.emailAddresses = this.fb.array([])
-    }
-    if (emails && emails.length > 0) {
-      let types = []
-      const emailList = emails.filter(item => {
-        if (this.emailDefault.includes(item.type)) {
-          types.push(item.type)
-          this.emailAddressForm.push(this.emailWithData(item))
-          return false
+
+  private formatEmailForm(emails?: EmailI[]): void {
+    if (this.formGroup && this.formGroup.controls) {
+      if (this.emailAddressForm ) {
+        !emails && this.emailAddressForm.value && (emails = this.emailAddressForm.value)
+        while (this.emailAddressForm.length !== 0) {
+          this.emailAddressForm.removeAt(0)
         }
-        return true
-      })
-      types.length < this.emailDefault.length && this.emailDefault.forEach(item => (
-        !types.includes(item) && this.emailAddressForm.push(this.emailGroup({ type: item }))
-      ))
-      emailList.forEach(item => this.emailAddressForm.push(this.emailWithData(item)))
-    } else {
-      this.phoneTypes.forEach(item => {
-        if (this.emailDefault.includes(item.type)) {
-          this.emailAddressForm.push(this.emailGroup(item))
+      }
+      let emailList = emails || []
+      for (let index = 0; index < this.emailDefault.length; index++) {
+        const { type } = this.emailTypes.find(item => item.type === this.emailDefault[index])
+        let data: EmailI
+        if (emails && emails.length) {
+          data = emails.find(item => item.type && item.type == type)
+          data && (emailList = emailList.filter(item => item !== data))
         }
-      })
+        !data && (data = <EmailI> { number: null, active: false, type })
+        this.emailAddressForm.push(this.emailWithData(data))
+      }
+      emailList.length > 0 && emailList.forEach(item => this.emailAddressForm.push(this.emailWithData(item)))
+      this.formGroup.controls.emailAddresses = this.emailAddressForm
     }
-    this.formGroup.controls.firstName.disabled && this.emailAddressForm.disable()
   }
 
   private phoneGroup({type = null }: PhoneTypeI): FormGroup {
@@ -160,7 +144,7 @@ export class ContactInformationComponent implements OnInit {
       type: [type],
       active: [active]
     })
-    this.formGroup.controls.firstName.disabled && form.disable()
+    this.formGroup.disabled && form.disable()
     return form
   }
 
@@ -171,7 +155,7 @@ export class ContactInformationComponent implements OnInit {
       active: [false]
     })
     type && form.patchValue({ type })
-    this.formGroup.controls.firstName.disabled && form.disable()
+    this.formGroup.disabled && form.disable()
     return form
   }
 
@@ -181,7 +165,7 @@ export class ContactInformationComponent implements OnInit {
       type: [type],
       active: [active]
     })
-    this.formGroup.controls.firstName.disabled && form.disable()
+    this.formGroup.disabled && form.disable()
     return form
   }
 }

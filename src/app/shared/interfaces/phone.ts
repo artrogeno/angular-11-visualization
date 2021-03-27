@@ -1,5 +1,5 @@
 export interface PhoneI {
-  number: string
+  number?: string
   type?: string
-  active: boolean
+  active?: boolean
 }

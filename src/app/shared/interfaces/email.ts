@@ -1,5 +1,5 @@
 export interface EmailI {
-  email: string
+  email?: string
   type?: string
-  active: boolean
+  active?: boolean
 }
