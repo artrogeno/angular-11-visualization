@@ -1,0 +1,23 @@
+<section [formGroup]="formGroup">
+  <section class="row">
+    <section class="col">
+      <mat-tab-group mat-align-tabs="start"
+        [selectedIndex]="tabIndex"
+        (selectedTabChange)="onTabChange($event)">
+        <mat-tab label="System Information">
+          <system-information [formGroup]="formGroup"></system-information>
+        </mat-tab>
+        <mat-tab label="Personal Data">
+          <personal-data [formGroup]="formGroup"></personal-data>
+        </mat-tab>
+        <mat-tab label="Contact Information">
+          <contact-information [formGroup]="formGroup"></contact-information>
+        </mat-tab>
+        <mat-tab label="Market Information">
+          <market-information [formGroup]="formGroup"></market-information>
+        </mat-tab>
+      </mat-tab-group>
+    </section>
+  </section>
+</section>
+

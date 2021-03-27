@@ -1,0 +1,52 @@
+<section [formGroup]="formGroup" class="row form-group-field">
+  <section class="col col-left">
+    <section class="form-header">
+      <h3>Personal Data</h3>
+    </section>
+    <section class="d-flex-row">
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>Birth Date: </mat-label>
+        <input matInput [matDatepicker]="birthDate" formControlName="birthDate" placeholder="mm/dd/yyyy" />
+        <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
+        <mat-datepicker #birthDate></mat-datepicker>
+      </mat-form-field>
+    </section>
+
+    <section class="col sub-section">
+      <section class="form-header">
+        <h3>Home Address</h3>
+      </section>
+      <section class="d-flex-row" formGroupName="address">
+        <mat-form-field appearance="standard" floatLabel="always" class="form-field-max">
+          <mat-label>Country:</mat-label>
+          <mat-select formControlName="countryId" [compareWith]="compareCountry" (selectionChange)="findState($event)">
+            <mat-option *ngFor="let item of countries" [value]="item">
+              {{item.country}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always" class="form-field-max">
+          <mat-label>State:</mat-label>
+          <mat-select formControlName="stateId" [compareWith]="compareState">
+            <mat-option *ngFor="let item of states" [value]="item">
+              {{item.state}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" floatLabel="always" class="form-field-max">
+          <mat-label>City: </mat-label>
+          <input matInput formControlName="city" placeholder="City" autocomplete="off" />
+        </mat-form-field>
+
+      </section>
+      <section class="d-flex-row">
+        <mat-form-field appearance="standard" floatLabel="always">
+          <mat-label>Mode: </mat-label>
+          <input matInput formControlName="mode" placeholder="Mode" autocomplete="off" />
+        </mat-form-field>
+      </section>
+    </section>
+  </section>
+</section>

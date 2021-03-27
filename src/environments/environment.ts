@@ -10,6 +10,10 @@ export const environment = {
     sidebar: true,
     loading: false
   },
+  load: {
+    show: false
+  },
+  header: { title: '', subtitle: '', mode: '', params: '' }
 };
 
 /*

@@ -1,0 +1,46 @@
+<section [formGroup]="formGroup" class="row form-group-field">
+  <section class="col col-left">
+    <section class="form-header">
+      <h3>System Information</h3>
+    </section>
+    <section class="d-flex-row">
+      <mat-form-field appearance="standard" floatLabel="always" class="form-field-max">
+        <mat-label>First Name: </mat-label>
+        <input matInput formControlName="firstName" placeholder="First Name" autocomplete="off" />
+      </mat-form-field>
+      <mat-form-field appearance="standard" floatLabel="always" class="form-field-xs-8">
+        <mat-label>Middle Name: </mat-label>
+        <input matInput formControlName="middleName" placeholder="Middle Name" autocomplete="off" />
+      </mat-form-field>
+      <mat-form-field appearance="standard" floatLabel="always" class="form-field-max">
+        <mat-label>Last Name: </mat-label>
+        <input matInput formControlName="lastName" placeholder="Last Name" autocomplete="off" />
+      </mat-form-field>
+      <mat-form-field appearance="standard" floatLabel="always" class="form-field-xs-3">
+        <mat-label>Suffix: </mat-label>
+        <input matInput formControlName="suffix" placeholder="Suffix" autocomplete="off" />
+      </mat-form-field>
+    </section>
+    <section class="d-flex-row">
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>Hire Date: </mat-label>
+        <input matInput [matDatepicker]="hireDate" formControlName="hireDate" placeholder="mm/dd/yyyy" />
+        <mat-datepicker-toggle matSuffix [for]="hireDate"></mat-datepicker-toggle>
+        <mat-datepicker #hireDate></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="standard" floatLabel="always" class="form-field-max">
+        <mat-label>Title: </mat-label>
+        <input matInput formControlName="title" placeholder="Title" autocomplete="off" />
+      </mat-form-field>
+      <mat-form-field appearance="standard" floatLabel="always">
+        <mat-label>Position: </mat-label>
+        <input matInput formControlName="position" placeholder="Position" autocomplete="off" />
+      </mat-form-field>
+      <mat-form-field appearance="standard" floatLabel="always" class="form-field-xs-8">
+        <mat-label>Office No: </mat-label>
+        <input matInput formControlName="officeNo" placeholder="Office No" autocomplete="off" />
+      </mat-form-field>
+    </section>
+  </section>
+</section>
+

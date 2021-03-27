@@ -1,0 +1,20 @@
+<!-- <section matAutocompleteOrigin #origin="matAutocompleteOrigin">
+  <mat-form-field floatLabel="always">
+    <mat-label>{{ firstNameLabel }}</mat-label>
+    <input matInput formControlName="firstName" [matAutocomplete]="auto" [matAutocompleteConnectedTo]="origin">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" floatLabel="always">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="lastName" [matAutocomplete]="auto" [matAutocompleteConnectedTo]="origin">
+  </mat-form-field>
+
+
+  <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="setFormData($event)">
+    <mat-option *ngFor="let person of people | async" [value]="person">
+      <div>
+        <span style="flex-grow: 1;flex: 1 1 33%;">{{person.firstName}} {{person.lastName }}</span>
+      </div>
+    </mat-option>
+  </mat-autocomplete>
+</section> -->

@@ -1,0 +1,73 @@
+<section class="form-header d-flex between-center">
+  <h3>Contact Information</h3>
+  <button mat-mini-fab color="primary" aria-label="Add Phone/Email" [matMenuTriggerFor]="menu" [disabled]="formDisabled">
+    <mat-icon>add</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" class="menu-action" xPosition="before">
+    <div mat-subheader>Phone Types</div>
+    <button mat-menu-item *ngFor="let item of phoneTypes" (click)="addPhone(item)">{{ item.type }}</button>
+    <div mat-subheader>Phone Types</div>
+    <button mat-menu-item *ngFor="let item of emailTypes" (click)="addEmail(item)">{{ item.type }}</button>
+  </mat-menu>
+</section>
+<section class="d-flex-column container-fluid" [formGroup]="formGroup">
+  <section class="row">
+    <section class="col">
+      <section class="d-flex-column w-100" formArrayName="phoneNumbers" *ngIf="phoneNumberForm && phoneNumberForm.controls">
+        <ng-container *ngFor="let item of phoneNumberForm.controls; index as i" >
+          <mat-form-field appearance="standard" floatLabel="always" class="form-field-max"
+            *ngIf="i < phoneDefault.length" [formGroupName]="i">
+            <mat-label>Phone ({{ item.value && item.value.type }}):</mat-label>
+            <input matInput formControlName="number" placeholder="+0 (000) 000-0000" autocomplete="off" />
+          </mat-form-field>
+        </ng-container>
+      </section>
+
+      <section class="d-flex-column w-100" formArrayName="emailAddresses" *ngIf="emailAddressForm && emailAddressForm.controls">
+        <ng-container *ngFor="let item of emailAddressForm.controls; index as i">
+          <mat-form-field appearance="standard" floatLabel="always" class="form-field-max"
+            *ngIf="i < emailDefault.length" [formGroupName]="i">
+            <mat-label>Email ({{ item.value && item.value.type }}): </mat-label>
+            <input matInput type="email" formControlName="email" placeholder="E-mail" autocomplete="off" />
+          </mat-form-field>
+        </ng-container>
+      </section>
+    </section>
+
+    <section class="col">
+      <section class="d-flex-column w-100" formArrayName="phoneNumbers" *ngIf="phoneNumberForm && phoneNumberForm.controls">
+        <ng-container *ngFor="let item of phoneNumberForm.controls; index as i">
+          <mat-form-field
+            appearance="standard"
+            floatLabel="always"
+            class="form-field-max"
+            *ngIf="i > phoneDefault.length - 1"
+            [formGroupName]="i">
+            <mat-label>Phone ({{ item.value && item.value.type }}): </mat-label>
+            <input matInput formControlName="number" placeholder="+0 (000) 000-0000" autocomplete="off" />
+            <button mat-icon-button matSuffix (click)="removePhone(i)" *ngIf="!item.disabled">
+              <mat-icon class="red-fg">delete_forever</mat-icon>
+            </button>
+          </mat-form-field>
+        </ng-container>
+      </section>
+
+      <section class="d-flex-column w-100" formArrayName="emailAddresses" *ngIf="emailAddressForm && emailAddressForm.controls">
+        <ng-container *ngFor="let item of emailAddressForm.controls; index as i">
+          <mat-form-field
+            appearance="standard"
+            floatLabel="always"
+            class="form-field-max"
+            *ngIf="i > emailDefault.length - 1"
+            [formGroupName]="i">
+            <mat-label>Email ({{ item.value && item.value.type }}) {{ item.disabled | json }}: </mat-label>
+            <input matInput type="email" formControlName="email" placeholder="E-mail" autocomplete="off" />
+            <button mat-icon-button matSuffix (click)="removeEmail(i)" *ngIf="!item.disabled">
+              <mat-icon class="red-fg">delete_forever</mat-icon>
+            </button>
+          </mat-form-field>
+        </ng-container>
+      </section>
+    </section>
+  </section>
+</section>

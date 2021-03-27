@@ -1,0 +1,22 @@
+<mat-card-header>
+
+  <div mat-card-avatar class="avatar">
+    <button mat-fab color="primary" aria-label="Example icon button with a bookmark icon">
+      <mat-icon>content_paste</mat-icon>
+    </button>
+  </div>
+  <mat-card-title>{{ header.title }}</mat-card-title>
+  <mat-card-subtitle>{{ header.subtitle }}</mat-card-subtitle>
+  <div class="card-action" *ngIf="header.mode">
+    <a [routerLink]="['list']" mat-fab color="basic" *ngIf="header.mode !== modeType.LIST">
+      <mat-icon>navigate_before</mat-icon>
+    </a>
+    <a [routerLink]="['add']" [queryParams]="query" mat-fab color="primary" class="m-l-06" *ngIf="header.mode !== modeType.CREATE">
+      <mat-icon>add</mat-icon>
+    </a>
+    <a [routerLink]="[id, 'edit']" [queryParams]="query" mat-fab color="success" class="m-l-06" *ngIf="id && header.mode === modeType.SHOW">
+      <mat-icon>edit</mat-icon>
+    </a>
+  </div>
+
+</mat-card-header>

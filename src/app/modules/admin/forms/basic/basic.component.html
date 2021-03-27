@@ -1,0 +1,16 @@
+<mat-card class="card-form">
+  <app-header></app-header>
+
+  <mat-card-content>
+    <router-outlet></router-outlet>
+    <!-- <ng-container *ngIf="mode === modeType.LIST">
+      <app-user-list></app-user-list>
+    </ng-container>
+
+    <ng-container *ngIf="![modeType.LIST, modeType.DELETE].includes(mode)">
+      <form [formGroup]="formGroup" class="container-fluid" (ngSubmit)="onSubmit()">
+        <app-user [formGroup]="formGroup"></app-user>
+      </form>
+    </ng-container> -->
+  </mat-card-content>
+</mat-card>

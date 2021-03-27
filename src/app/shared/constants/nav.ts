@@ -18,13 +18,13 @@ export const NAV: INav[] = [
     children: [
       {
         type: 'nav',
-        link: '/admin/form/basic',
+        link: '/admin/forms/basic',
         name: 'basic',
         icon: 'ballot'
       },
       {
         type: 'nav',
-        link: '/admin/form/wizard',
+        link: '/admin/forms/wizard',
         name: 'wizard',
         icon: 'flash_auto'
       }

@@ -10,12 +10,15 @@ import { AuthInterceptor } from '@shared/interceptors/auth.interceptor';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoadingComponent } from './shared/components/loading/loading.component';
+import { ContactAutocompleteComponent } from './shared/components/contact-autocomplete/contact-autocomplete.component';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    LoadingComponent
+    LoadingComponent,
+    ContactAutocompleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,8 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
