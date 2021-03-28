@@ -127,6 +127,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       justify-content: space-between;
       align-items: center;
     }
+    &.start-center {
+      justify-content: flex-start;
+      align-items: center;
+    }
+
   }
   &-row {
     flex-direction: row;

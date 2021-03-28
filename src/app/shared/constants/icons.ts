@@ -14,5 +14,8 @@ export const ICONS = {
     'web_money',
     'wire_transfer',
     'default'
+  ],
+  CURRENCY: [
+    'bitcoin'
   ]
 }

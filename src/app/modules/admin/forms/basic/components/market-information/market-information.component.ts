@@ -6,7 +6,6 @@ import { map, startWith } from 'rxjs/operators';
 
 import { ICONS, MASK } from '@shared/constants';
 import { IconService } from '@shared/services';
-import { MarketDialogComponent } from '../dialog/market-dialog/market-dialog.component';
 
 @Component({
   selector: 'market-information',
@@ -21,11 +20,9 @@ export class MarketInformationComponent implements OnInit {
 
   cardMask = MASK.CARD
 
-  constructor(
-    public dialog: MatDialog,
-    private iconService: IconService
-  ) {
+  constructor(private iconService: IconService) {
     this.iconService.cards()
+    this.iconService.currency()
   }
 
   get commerceForm(): FormGroup {
@@ -34,18 +31,6 @@ export class MarketInformationComponent implements OnInit {
 
   ngOnInit(): void {
     this.observableForm()
-  }
-
-  openMarketDialog(): void {
-    const dialogRef = this.dialog.open(MarketDialogComponent, {
-      data: {
-        terms: this.formGroup.controls.terms.value
-      }
-    })
-
-    dialogRef.afterClosed().subscribe(terms => {
-      this.formGroup.controls.terms.setValue(terms)
-    })
   }
 
   getCardIcon(): string {

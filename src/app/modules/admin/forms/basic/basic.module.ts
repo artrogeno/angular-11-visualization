@@ -15,7 +15,7 @@ import { ContactInformationComponent } from './components/contact-information/co
 import { BasicRoutingModule } from './basic-routing.module';
 import { HeaderComponent } from './components/header/header.component';
 import { MarketInformationComponent } from './components/market-information/market-information.component';
-import { MarketDialogComponent } from './components/dialog/market-dialog/market-dialog.component';
+import { TermsDialogComponent } from './components/dialog/terms-dialog/terms-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import { MarketDialogComponent } from './components/dialog/market-dialog/market-
     ContactInformationComponent,
     HeaderComponent,
     MarketInformationComponent,
-    MarketDialogComponent,
+    TermsDialogComponent,
   ],
   imports: [
     CommonModule,

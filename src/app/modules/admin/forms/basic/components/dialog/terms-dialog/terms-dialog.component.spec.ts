@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MarketDialogComponent } from './market-dialog.component';
+import { TermsDialogComponent } from './terms-dialog.component';
 
-describe('MarketDialogComponent', () => {
-  let component: MarketDialogComponent;
-  let fixture: ComponentFixture<MarketDialogComponent>;
+describe('TermsDialogComponent', () => {
+  let component: TermsDialogComponent;
+  let fixture: ComponentFixture<TermsDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MarketDialogComponent ]
+      declarations: [ TermsDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MarketDialogComponent);
+    fixture = TestBed.createComponent(TermsDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

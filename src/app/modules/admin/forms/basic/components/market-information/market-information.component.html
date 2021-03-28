@@ -2,9 +2,6 @@
   <section class="col col-left">
     <section class="form-header d-flex between-center">
       <h3>Market Information {{ formGroup.controls.terms.value }}</h3>
-      <button mat-mini-fab color="primary" aria-label="Add Market" (click)="openMarketDialog()">
-        <mat-icon>bookmark_add</mat-icon>
-      </button>
     </section>
     <section class="d-flex-column container-fluid">
 
@@ -31,7 +28,7 @@
           <mat-form-field appearance="standard" floatLabel="always" class="form-field-max" formGroupName="commerce">
             <mat-label>Bitcoin Address:</mat-label>
             <input matInput formControlName="bitcoinAddress" placeholder="Bitcoin Address" autocomplete="off" />
-            <mat-icon matSuffix>view_comfy</mat-icon>
+            <mat-icon matSuffix svgIcon="currency:bitcoin"></mat-icon>
           </mat-form-field>
 
           <section class="row">

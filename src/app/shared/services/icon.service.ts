@@ -24,4 +24,12 @@ export class IconService {
       )
     })
   }
+
+  currency() {
+    ICONS.CURRENCY.forEach(icon => {
+      this.iconRegistry.addSvgIconInNamespace('currency', icon,
+        this.sanitizer.bypassSecurityTrustResourceUrl(`../../../assets/images/icons/${icon}.svg`)
+      )
+    })
+  }
 }

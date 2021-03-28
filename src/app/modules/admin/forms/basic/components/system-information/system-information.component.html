@@ -41,6 +41,10 @@
         <input matInput formControlName="officeNo" placeholder="Office No" autocomplete="off" />
       </mat-form-field>
     </section>
+    <section class="d-flex-row start-center">
+      <button mat-button (click)="openTermsDialog()" [disabled]="formGroup.disabled">Terms of use</button>
+      <mat-checkbox class="terms" formControlName="terms"></mat-checkbox>
+    </section>
   </section>
 </section>
 

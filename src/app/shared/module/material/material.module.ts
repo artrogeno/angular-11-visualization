@@ -23,6 +23,7 @@ import { MatNativeDateModule } from '@angular/material/core'
 import { MatMomentDateModule } from '@angular/material-moment-adapter'
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -50,6 +51,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatMomentDateModule,
     MatSelectModule,
     MatDialogModule,
+    MatCheckboxModule,
   ],
   exports: [
     MatToolbarModule,
@@ -75,6 +77,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatMomentDateModule,
     MatSelectModule,
     MatDialogModule,
+    MatCheckboxModule,
   ]
 })
 export class MaterialModule { }
