@@ -1,10 +1,131 @@
 <section [formGroup]="formGroup" class="row form-group-field">
   <section class="col col-left">
     <section class="form-header d-flex between-center">
-      <h3>Market Information</h3>
+      <h3>Market Information {{ formGroup.controls.terms.value }}</h3>
       <button mat-mini-fab color="primary" aria-label="Add Market" (click)="openMarketDialog()">
         <mat-icon>bookmark_add</mat-icon>
       </button>
+    </section>
+    <section class="d-flex-column container-fluid">
+
+      <section class="row">
+        <section class="col">
+
+          <section class="row">
+            <section class="col p-t-0 p-b-0">
+              <mat-form-field appearance="standard" floatLabel="always" class="form-field-max" formGroupName="commerce">
+                <mat-label>Currency:</mat-label>
+                <input matInput formControlName="currency" placeholder="Currency" autocomplete="off" />
+                <mat-icon matSuffix>payments</mat-icon>
+              </mat-form-field>
+            </section>
+            <section class="col p-t-0 p-b-0">
+              <mat-form-field appearance="standard" floatLabel="always" class="form-field-max" formGroupName="commerce">
+                <mat-label>Currency Code:</mat-label>
+                <input matInput formControlName="currencyCode" placeholder="Currency Code" autocomplete="off" />
+                <mat-icon matSuffix>list_alt</mat-icon>
+              </mat-form-field>
+            </section>
+          </section>
+
+          <mat-form-field appearance="standard" floatLabel="always" class="form-field-max" formGroupName="commerce">
+            <mat-label>Bitcoin Address:</mat-label>
+            <input matInput formControlName="bitcoinAddress" placeholder="Bitcoin Address" autocomplete="off" />
+            <mat-icon matSuffix>view_comfy</mat-icon>
+          </mat-form-field>
+
+          <section class="row">
+            <section class="col p-t-0 p-b-0">
+              <mat-form-field appearance="standard" floatLabel="always" class="form-field-max" formGroupName="commerce">
+                <mat-label>Credit Card:</mat-label>
+                <input matInput formControlName="creditCard" placeholder="0000 0000 0000 0000" [ngxMask]="cardMask" autocomplete="off" />
+                <mat-icon matSuffix>credit_card</mat-icon>
+              </mat-form-field>
+            </section>
+            <section class="col p-t-0 p-b-0">
+              <mat-form-field appearance="standard" floatLabel="always" class="form-field-max" formGroupName="commerce">
+                <mat-label>Credit Card Type:</mat-label>
+                <input
+                  type="text"
+                  formControlName="creditCardType"
+                  placeholder="Credit Card Type"
+                  autocomplete="off"
+                  matInput
+                  [matAutocomplete]="autoCardType">
+                <mat-icon matSuffix [svgIcon]="getCardIcon()"></mat-icon>
+                <mat-autocomplete autoActiveFirstOption #autoCardType="matAutocomplete">
+                  <mat-option *ngFor="let cardType of creditCardTypes | async" [value]="cardType">
+                    <div class="d-flex-row between-center w-100">
+                      <span>{{cardType}}</span>
+                      <mat-icon [svgIcon]="'card:' + cardType"></mat-icon>
+                    </div>
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </section>
+          </section>
+
+          <section class="row">
+            <section class="col p-t-0 p-b-0">
+              <mat-form-field appearance="standard" floatLabel="always" class="form-field-max" formGroupName="commerce">
+                <mat-label>iban:</mat-label>
+                <input matInput formControlName="iban" placeholder="iban" autocomplete="off" />
+              </mat-form-field>
+            </section>
+            <section class="col p-t-0 p-b-0">
+              <mat-form-field appearance="standard" floatLabel="always" class="form-field-max" formGroupName="commerce">
+                <mat-label>retail:</mat-label>
+                <input matInput formControlName="retail" placeholder="retail" autocomplete="off" />
+              </mat-form-field>
+            </section>
+          </section>
+        </section>
+
+        <section class="col">
+          <mat-form-field appearance="standard" floatLabel="always" class="form-field-max" formGroupName="commerce">
+            <mat-label>stockIndustry:</mat-label>
+            <input matInput formControlName="stockIndustry" placeholder="stockIndustry" autocomplete="off" />
+          </mat-form-field>
+
+          <section class="row">
+            <section class="col p-t-0 p-b-0">
+              <mat-form-field appearance="standard" floatLabel="always" class="form-field-max" formGroupName="commerce">
+                <mat-label>stockMarket:</mat-label>
+                <input matInput formControlName="stockMarket" placeholder="stockMarket" autocomplete="off" />
+              </mat-form-field>
+            </section>
+            <section class="col p-t-0 p-b-0">
+              <mat-form-field appearance="standard" floatLabel="always" class="form-field-max" formGroupName="commerce">
+                <mat-label>stockMarketCap:</mat-label>
+                <input matInput formControlName="stockMarketCap" placeholder="stockMarketCap" autocomplete="off" />
+              </mat-form-field>
+            </section>
+          </section>
+
+
+          <mat-form-field appearance="standard" floatLabel="always" class="form-field-max" formGroupName="commerce">
+            <mat-label>stockName:</mat-label>
+            <input matInput formControlName="stockName" placeholder="stockName" autocomplete="off" />
+          </mat-form-field>
+
+          <section class="row">
+            <section class="col p-t-0 p-b-0">
+              <mat-form-field appearance="standard" floatLabel="always" class="form-field-max" formGroupName="commerce">
+                <mat-label>stockSector:</mat-label>
+                <input matInput formControlName="stockSector" placeholder="stockSector" autocomplete="off" />
+              </mat-form-field>
+            </section>
+            <section class="col p-t-0 p-b-0">
+              <mat-form-field appearance="standard" floatLabel="always" class="form-field-max" formGroupName="commerce">
+                <mat-label>stockSymbol:</mat-label>
+                <input matInput formControlName="stockSymbol" placeholder="stockSymbol" autocomplete="off" />
+              </mat-form-field>
+            </section>
+          </section>
+
+        </section>
+      </section>
+
     </section>
   </section>
 

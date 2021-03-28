@@ -64,6 +64,34 @@
 
       .col {
         flex: 1 0 0%;
+
+        @media only screen and (min-width: 1024px) {
+          margin-left: 0.25rem;
+          margin-right: 0.25rem;
+
+          &:first-of-type {
+            margin-left: 0;
+            margin-right: 0.25rem;
+          }
+          &:last-of-type {
+            margin-left: 0.25rem;
+            margin-right: 0;
+          }
+        }
+
+        @media only screen and (min-width: 960px) {
+          margin-left: 0.5rem;
+          margin-right: 0.5rem;
+
+          &:first-of-type {
+            margin-left: 0;
+            margin-right: 0.5rem;
+          }
+          &:last-of-type {
+            margin-left: 0.5rem;
+            margin-right: 0;
+          }
+        }
       }
     }
   }

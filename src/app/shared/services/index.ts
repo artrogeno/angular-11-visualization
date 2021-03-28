@@ -7,4 +7,5 @@ export * from './email-type.service'
 export * from './phone-type.service'
 export * from './load.service'
 export * from './header.service'
+export * from './icon.service'
 

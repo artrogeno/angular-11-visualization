@@ -5,6 +5,7 @@ import { PhoneI } from './phone';
 
 export interface UserI {
   id?: number
+  terms?: boolean
   title?: string
   suffix?: string
   firstName: string

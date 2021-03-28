@@ -122,17 +122,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .d-flex {
   &, &-row, &-column {
     display: flex;
+
+    &.between-center {
+      justify-content: space-between;
+      align-items: center;
+    }
   }
   &-row {
     flex-direction: row;
   }
   &-column {
     flex-direction: column;
-  }
-
-  &.between-center {
-    justify-content: space-between;
-    align-items: center;
   }
 }
 
@@ -153,6 +153,54 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
     &-r-#{$i} {
       margin-right: #{$i}rem !important;
+    }
+  }
+}
+
+.p {
+  &-l-0 {
+    padding-left: 0 !important;
+  }
+  &-r-0 {
+    padding-right: 0 !important;
+  }
+  &-t-0 {
+    padding-top: 0 !important;
+  }
+  &-b-0 {
+    padding-bottom: 0 !important;
+  }
+  $columns: 10;
+  @for $i from 1 through $columns {
+    &-l-0#{$i} {
+      padding-left: #{0 + '.' + $i}rem !important;
+    }
+    &-l-#{$i} {
+      padding-left: #{$i}rem !important;
+    }
+  }
+  @for $i from 1 through $columns {
+    &-r-0#{$i} {
+      padding-right: #{0 + '.' + $i}rem !important;
+    }
+    &-r-#{$i} {
+      padding-right: #{$i}rem !important;
+    }
+  }
+  @for $i from 1 through $columns {
+    &-t-0#{$i} {
+      padding-top: #{0 + '.' + $i}rem !important;
+    }
+    &-t-#{$i} {
+      padding-top: #{$i}rem !important;
+    }
+  }
+  @for $i from 1 through $columns {
+    &-b-0#{$i} {
+      padding-bottom: #{0 + '.' + $i}rem !important;
+    }
+    &-b-#{$i} {
+      padding-bottom: #{$i}rem !important;
     }
   }
 }

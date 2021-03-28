@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
+import { ICONS, MASK } from '@shared/constants';
+import { IconService } from '@shared/services';
 import { MarketDialogComponent } from '../dialog/market-dialog/market-dialog.component';
 
 @Component({
@@ -13,32 +17,55 @@ export class MarketInformationComponent implements OnInit {
 
   @Input() formGroup: FormGroup
 
+  creditCardTypes: Observable<string[]>;
+
+  cardMask = MASK.CARD
+
   constructor(
-    private fb: FormBuilder,
-    public dialog: MatDialog
-  ) { }
+    public dialog: MatDialog,
+    private iconService: IconService
+  ) {
+    this.iconService.cards()
+  }
+
+  get commerceForm(): FormGroup {
+    return <FormGroup>this.formGroup.controls.commerce
+  }
 
   ngOnInit(): void {
-    if (Object.keys(this.formGroup.controls).length === 0) {
-      this.formGroup = this.fb.group({
-        firstName: [null, [Validators.required]],
-        lastName: [null],
-        birthDate: [null]
-      })
-    }
+    this.observableForm()
   }
 
   openMarketDialog(): void {
     const dialogRef = this.dialog.open(MarketDialogComponent, {
       data: {
-        animal: 'panda'
+        terms: this.formGroup.controls.terms.value
       }
-    });
+    })
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed')
-      console.log({result})
-    });
+    dialogRef.afterClosed().subscribe(terms => {
+      this.formGroup.controls.terms.setValue(terms)
+    })
   }
 
+  getCardIcon(): string {
+    if (this.formGroup.controls && this.commerceForm) {
+      if (this.commerceForm.controls.creditCardType) {
+        const icon = this.commerceForm.controls.creditCardType.value
+        return `card:${ICONS.CARDS.includes(icon) ? icon : 'default'}`
+      }
+    }
+    return 'card:default'
+  }
+
+  private observableForm(): void {
+    this.observableCardType()
+  }
+
+  private observableCardType(): void {
+    this.creditCardTypes = this.commerceForm.controls.creditCardType.valueChanges.pipe(
+      startWith(''),
+      map(type => ICONS.CARDS.filter(item => item.toLowerCase().indexOf(type.toLowerCase()) === 0))
+    )
+  }
 }

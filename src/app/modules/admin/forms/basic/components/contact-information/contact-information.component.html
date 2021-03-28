@@ -18,7 +18,7 @@
           <mat-form-field appearance="standard" floatLabel="always" class="form-field-max"
             *ngIf="i < phoneDefault.length" [formGroupName]="i">
             <mat-label>Phone ({{ item.value && item.value.type }}):</mat-label>
-            <input matInput formControlName="number" placeholder="+0 (000) 000-0000" autocomplete="off" />
+            <input matInput formControlName="number" [ngxMask]="phoneMask"  placeholder="+0 (000) 000-0000" autocomplete="off" />
           </mat-form-field>
         </ng-container>
       </section>
@@ -44,7 +44,7 @@
             *ngIf="i > phoneDefault.length - 1"
             [formGroupName]="i">
             <mat-label>Phone ({{ item.value && item.value.type }}): </mat-label>
-            <input matInput formControlName="number" placeholder="+0 (000) 000-0000" autocomplete="off" />
+            <input matInput formControlName="number" [ngxMask]="phoneMask" placeholder="+0 (000) 000-0000" autocomplete="off"  />
             <button mat-icon-button matSuffix (click)="removePhone(i)" *ngIf="!item.disabled">
               <mat-icon class="red-fg">delete_forever</mat-icon>
             </button>

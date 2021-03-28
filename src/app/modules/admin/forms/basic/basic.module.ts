@@ -29,7 +29,7 @@ import { MarketDialogComponent } from './components/dialog/market-dialog/market-
     ContactInformationComponent,
     HeaderComponent,
     MarketInformationComponent,
-    MarketDialogComponent
+    MarketDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -44,7 +44,7 @@ import { MarketDialogComponent } from './components/dialog/market-dialog/market-
     HomeAddressComponent,
     PhonesComponent,
     SystemInformationComponent,
-    UserListComponent
+    UserListComponent,
   ],
   providers: [],
 })

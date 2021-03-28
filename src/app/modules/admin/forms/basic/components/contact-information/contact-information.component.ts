@@ -134,17 +134,18 @@ export class ContactInformationComponent implements OnInit {
       active: [false]
     })
     type && form.patchValue({ type })
-    this.formGroup.controls.firstName.disabled && form.disable()
+    this.formDisabled && form.disable()
     return form
   }
 
   private phoneWithData({ number = null, type = null, active = false }: PhoneI ) {
+    number && (number = number.replace(/\D/g,''))
     const form = this.fb.group({
       number: [number, [Validators.required]],
       type: [type],
       active: [active]
     })
-    this.formGroup.disabled && form.disable()
+    this.formDisabled && form.disable()
     return form
   }
 
@@ -155,7 +156,7 @@ export class ContactInformationComponent implements OnInit {
       active: [false]
     })
     type && form.patchValue({ type })
-    this.formGroup.disabled && form.disable()
+    this.formDisabled && form.disable()
     return form
   }
 
@@ -165,7 +166,7 @@ export class ContactInformationComponent implements OnInit {
       type: [type],
       active: [active]
     })
-    this.formGroup.disabled && form.disable()
+    this.formDisabled && form.disable()
     return form
   }
 }

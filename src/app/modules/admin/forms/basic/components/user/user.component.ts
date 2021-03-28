@@ -64,6 +64,7 @@ export class UserComponent implements OnInit {
   private formDefinition(): void {
     this.formGroup = this.fb.group({
       mode: [this.mode],
+      terms: [null],
       title: [null],
       firstName: ['', [Validators.required]],
       middleName: [null],
