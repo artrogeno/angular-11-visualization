@@ -1,0 +1,19 @@
+{
+  "posts": [
+    { "id": 1, "title": "json-server", "author": "typicode" }
+  ],
+  "comments": [
+    { "id": 1, "body": "some comment", "postId": 1 }
+  ],
+  "profile": { "name": "typicode" },
+  "phoneType": [
+    { "id": 1, "type": "Business" },
+    { "id": 1, "type": "Residential" },
+    { "id": 1, "type": "Office" },
+    { "id": 1, "type": "Mobile" }
+  ],
+  "emailType": [
+    { "id": 1, "type": "Business" },
+    { "id": 1, "type": "Personal" }
+  ]
+}
